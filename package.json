@@ -1,0 +1,12 @@
+{
+  "name"         : "phil-scrape",
+  "version"      : "0.0.1",
+  "description"  : "get all the references.",
+  "main"         : "app.js",
+  "author"       : "Simon",
+  "dependencies" : {
+    "request"    : "latest",
+    "cheerio"    : "latest",
+    "mongodb"    : "latest"
+  }
+}
