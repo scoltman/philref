@@ -224,8 +224,4 @@ function papersPerMinute(){
   }, 60000);
 }
 
-//getDBstatus();
 processPaperCitations();
-//markAllAsUnprocessed();
-//gatherPapers();
-// db.close();
