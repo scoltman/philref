@@ -30,10 +30,12 @@ function connectToServer(callback){
  function getDBstatus(){
    var totalPapers = 1385199;
    var paperRate = 100;
+   var previousPercent = 0;
 
    connectToServer(function(){
       setInterval(function(){
            collection.find().toArray(function(err, docs){
+             var newPercent;
              if(!docs.length) {
                console.log('no docs');
              } else {
@@ -46,12 +48,22 @@ function connectToServer(callback){
                  }
                });
 
-               console.log(processedEntries + ' processed papers');
-               console.log(unprocessedEntries + ' unprocessed papers');
-               console.log(Math.ceil(((totalPapers - docs.length)%paperRate)%60) + " hours");
-               console.log('-----------');
-               processedEntries =0;
-               unprocessedEntries=0;
+               newPercent = parseFloat((processedEntries/totalPapers)*100).toFixed(2);
+               processedEntries = 0;
+               unprocessedEntries = 0;
+
+               if(previousPercent != newPercent){
+
+                  /*
+                 console.log(processedEntries + ' processed papers');
+                 console.log(unprocessedEntries + ' unprocessed papers');
+                 console.log(Math.ceil(((totalPapers - docs.length)%paperRate)%60) + " hours");
+                 */
+                 console.log(newPercent + ' % of papers');
+                 console.log('-----------');
+
+                 previousPercent = newPercent;
+               }
 
              }
          });
